@@ -39,8 +39,55 @@ function hi() {
 //2. The input type of the function is written before the arrow.
 //3. The return type of the function is written after the arrow or at last.
 
+// Simple Functions
 // length :: String → Number
 const length = s => s.length;
+
+// length :: [Number] → Number
+const length = arr => arr.length;
+
+// Multiple Parameters
+// join :: (String, [String]) → String
+const join = (separator, arr) => arr.join(separator);
+
+// Higher order Functions
+// addOneToAll :: ((Number → Number),[Number]) → [Number]
+const addOneToAll = (addOne = x => x + 1, arr) => arr.map(addOne);
+
+// Hindley-Milner’s Arbitrary Variable
+// identity :: a → a
+const identity = a => a;
+
+// length :: [a] → Number
+const length = arr => arr.length;
+
+// head :: [a] → a
+const head = arr => arr[0];
+
+// Thunks or Curried Functions
+// map :: (a → b) → [a] → [b]
+const map = fn => arr => arr.map(fn);
+
+// allToString :: [a] → [String]
+const allToString = arr => arr.map(toString);
+
+// filter :: (a → bool) → [a] → [a]
+const filter = fn => arr => arr.filter(fn);
+
+// reduce :: (b → a → b) → b → [a] → b
+const reduce = fn => init => arr => arr.reduce(fn, init);
+
+// Free Theorems
+// Type signature of head says
+// head :: [a] → a
+compose(
+  map(fn),
+  head
+) ==
+  compose(
+    head,
+    fn
+  );
 
 /**
  * Type parameters / placeholder ---------------------------------------
